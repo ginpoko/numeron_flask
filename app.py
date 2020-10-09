@@ -1,4 +1,6 @@
 from flask import Flask,render_template, request, redirect, url_for
+import NumeronLogic
+
 
 app = Flask(__name__)
 
@@ -7,6 +9,12 @@ class Numbers:
         self.first = first
         self.second = second
         self.third = third
+
+my_num = None
+
+@app.route('/')
+def title():
+    return render_template('start.html')
 
 @app.route('/start', methods=['GET','POST'])
 def wait():
@@ -18,6 +26,9 @@ def wait():
             request.form.get('my_second'),
             request.form.get('my_third'),
         )
+        global my_num
+        my_num = my_numbers
+
         # この部分をNOじゃなくてwait上に同じ値が含まれていると言う警告を出す
         if my_numbers.first == my_numbers.second:
             return render_template('wait.html',change=1)
@@ -29,10 +40,10 @@ def wait():
             return render_template('wait.html',change=2, numbers=my_numbers)
 
 
-@app.route('/play', methods=['GET'])
+@app.route('/play', methods=['GET','POST'])
 def play():
     if request.method == 'GET':
-        return render_template('play.html')
+        return render_template('play.html', my_num=my_num)
     else:
         pass
 

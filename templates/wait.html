@@ -30,14 +30,14 @@
                 {# ここに入力した番号を表示する　#}
                 <div class="center">
                     <p style="display:inline-block; font-size: 50px;">{{ numbers.first }} </p>
-                    <p style="display:inline-block; font-size: 50px">{{ numbers.second }} </p>
-                    <p style="display:inline-block; font-size: 50px">{{ numbers.third }} </p>
+                    <p style="display:inline-block; font-size: 50px;">{{ numbers.second }} </p>
+                    <p style="display:inline-block; font-size: 50px;">{{ numbers.third }} </p>
                 </div>
                 <h2 class="center">です</h2>
             </div>
 
             <div class="center container">
-                <form action="{{ url_for('play') }}" method="POST">
+                <form action="{{ url_for('play') }}" method="GET">
                   <button type="submit" class="btn btn-primary btn-lg">ゲームを始める</button>
                 </form>
             </div>
