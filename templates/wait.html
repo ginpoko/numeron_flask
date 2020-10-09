@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+        <div style="margin-bottom: 100px;">
+            <div>
+                <h1 class="container title">0から9の数字を3つ選んで好きな順番で並べてください。</h1>
+            </div>
+            <div class="container center">
+                <form action="{{ url_for('wait') }}" method="POST">
+                    <div>
+                        <input type="number" min="0" max="9" class="number" name="my_first">
+                        <input type="number" min="0" max="9" class="number" name="my_second">
+                        <input type="number" min="0" max="9" class="number" name="my_third">
+                    </div>
+                    <div>
+                        <input type="submit" value="決定" style="margin-top: 20px;" class="btn btn-primary btn-lg">
+                    </div>
+                </form>
+            </div>
+        {#!!!フラッシュをつか入力が異なると表示する(未実装)#}
+            {% if change == 1 %}
+                <p>入力が異なります。</p>
+            {% endif %}
+        </div>
+    {#  ここにはif分岐でもし条件を満たしていたらプレイヤーの数字が表示される  #}
+    {% if change == 2 %}
+        <div class="container verification">
+            <div>
+                <h2 class="center">あなたが選んだ番号は</h2>
+                {# ここに入力した番号を表示する　#}
+                <div class="center">
+                    <p style="display:inline-block; font-size: 50px;">{{ numbers.first }} </p>
+                    <p style="display:inline-block; font-size: 50px">{{ numbers.second }} </p>
+                    <p style="display:inline-block; font-size: 50px">{{ numbers.third }} </p>
+                </div>
+                <h2 class="center">です</h2>
+            </div>
+
+            <div class="center container">
+                <form action="{{ url_for('play') }}" method="POST">
+                  <button type="submit" class="btn btn-primary btn-lg">ゲームを始める</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

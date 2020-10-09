@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block body %}
+  <div style="margin-bottom: 100px;">
+            <div class="center container play_title" style="margin-top: 50px;">
+                <h1>あなたのターンです。</h1>
+                <h2>相手の数字を予測してください。</h2>
+            </div>
+            <div class="container center">
+                <form action="{{ url_for('play') }}" method="POST">
+                    <div>
+                        <input type="number" min="0" max="9" class="number" name="first">
+                        <input type="number" min="0" max="9" class="number" name="second">
+                        <input type="number" min="0" max="9" class="number" name="third">
+                    </div>
+                    <div>
+                        <input type="submit" value="決定" style="margin-top: 20px;" class="btn btn-primary btn-lg">
+                    </div>
+                </form>
+            </div>
+  </div>
+
+
+
+{% endblock %}
